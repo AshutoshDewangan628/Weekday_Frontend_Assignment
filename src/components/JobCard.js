@@ -1,136 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import JobList from './jobList';
-
-// function JobCard() {
-//   const [jobs, setJobs] = useState([]);
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [error, setError] = useState(null);
-//   const [filters, setFilters] = useState({
-//     minExperience: '',
-//     companyName: '',
-//     location: '',
-//     isRemote: false,
-//     techStack: '',
-//     role: '',
-//     minBasePay: ''
-//   });
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const myHeaders = new Headers();
-//         myHeaders.append("Content-Type", "application/json");
-
-//         const body = JSON.stringify({
-//           "limit": 100,
-//           "offset": 0
-//         });
-
-//         const requestOptions = {
-//           method: "POST",
-//           headers: myHeaders,
-//           body
-//         };
-
-//         const response = await fetch("https://api.weekday.technology/adhoc/getSampleJdJSON", requestOptions);
-//         if (!response.ok) {
-//           throw new Error('Network response was not ok');
-//         }
-
-//         const jsonData = await response.json();
-//         setJobs(jsonData.jdList); // Update state with fetched job list
-//       } catch (error) {
-//         setError(error);
-//       } finally {
-//         setIsLoading(false);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   const handleFilterChange = (event) => {
-//     const { name, value, type, checked } = event.target;
-//     const filterValue = type === 'checkbox' ? checked : value;
-
-//     setFilters(prevFilters => ({
-//       ...prevFilters,
-//       [name]: filterValue
-//     }));
-//   };
-
-//   const filteredJobs = jobs.filter(job => {
-//     if (filters.minExperience && job.minExp < parseInt(filters.minExperience)) {
-//       return false;
-//     }
-//     if (filters.companyName && !job.companyName.toLowerCase().includes(filters.companyName.toLowerCase())) {
-//       return false;
-//     }
-//     if (filters.location && !job.location.toLowerCase().includes(filters.location.toLowerCase())) {
-//       return false;
-//     }
-//     if (filters.isRemote && !job.isRemote) {
-//       return false;
-//     }
-//     if (filters.techStack && !job.techStack.toLowerCase().includes(filters.techStack.toLowerCase())) {
-//       return false;
-//     }
-//     if (filters.role && !job.role.toLowerCase().includes(filters.role.toLowerCase())) {
-//       return false;
-//     }
-//     if (filters.minBasePay) {
-//       const minBasePay = parseInt(filters.minBasePay);
-//       if (!job.minJdSalary || job.minJdSalary < minBasePay) {
-//         return false;
-//       }
-//     }
-//     return true;
-//   });
-
-//   if (isLoading) {
-//     return <div>Loading...</div>;
-//   }
-
-//   if (error) {
-//     return <div>Error: {error.message}</div>;
-//   }
-
-//   return (
-//     <div>
-//       {/* Render filter input fields or select dropdowns */}
-//       <select name="minExperience" value={filters.minExperience} onChange={handleFilterChange}>
-//         <option value="">Select Minimum Experience</option>
-//         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(year => (
-//           <option key={year} value={year}>{year}</option>
-//         ))}
-//       </select>
-//       <input type="text" name="companyName" value={filters.companyName} onChange={handleFilterChange} placeholder="Company Name" />
-//       <input type="text" name="location" value={filters.location} onChange={handleFilterChange} placeholder="Location" />
-//       <label>
-//         <input type="checkbox" name="isRemote" checked={filters.isRemote} onChange={handleFilterChange} />
-//         Remote
-//       </label>
-//       <input type="text" name="techStack" value={filters.techStack} onChange={handleFilterChange} placeholder="Tech Stack" />
-//       <input type="text" name="role" value={filters.role} onChange={handleFilterChange} placeholder="Role" />
-//       <select name="minBasePay" value={filters.minBasePay} onChange={handleFilterChange}>
-//         <option value="">Select Minimum Base Pay</option>
-//         {[10, 20, 30, 40, 50, 60,70].map(amount => (
-//           <option key={amount} value={amount}>{amount}</option>
-//         ))}
-//       </select>
-        
-      
-//       <div className="job-listings">
-//         {filteredJobs.map(job => (
-//           <JobList key={job.jdUid} job={job} />
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default JobCard;
-
 import React, { useState, useEffect, useRef } from 'react';
 import JobList from './jobList';
 
@@ -257,28 +124,30 @@ function JobCard() {
   }
 
   return (
-    <div>
+    <div >
       {/* Render filter input fields or select dropdowns */}
-      <select name="minExperience" value={filters.minExperience} onChange={handleFilterChange}>
+      <div className='filter'>
+      <select className='filter_spe' name="minExperience" value={filters.minExperience} onChange={handleFilterChange}>
         <option value="">Minimum Experience</option>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(year => (
           <option key={year} value={year}>{year}</option>
         ))}
       </select>
-      <input type="text" name="companyName" value={filters.companyName} onChange={handleFilterChange} placeholder="Company Name" />
-      <input type="text" name="location" value={filters.location} onChange={handleFilterChange} placeholder="Location" />
-      <label>
+      <input className='filter_spe' type="text" name="companyName" value={filters.companyName} onChange={handleFilterChange} placeholder="Company Name" />
+      <input className='filter_spe' type="text" name="location" value={filters.location} onChange={handleFilterChange} placeholder="Location" />
+      <label  className='filter_spe'>
         <input type="checkbox" name="isRemote" checked={filters.isRemote} onChange={handleFilterChange} />
         Remote
       </label>
-      <input type="text" name="techStack" value={filters.techStack} onChange={handleFilterChange} placeholder="Tech Stack" />
-      <input type="text" name="role" value={filters.role} onChange={handleFilterChange} placeholder="Role" />
-      <select name="minBasePay" value={filters.minBasePay} onChange={handleFilterChange}>
+      <input className='filter_spe' type="text" name="techStack" value={filters.techStack} onChange={handleFilterChange} placeholder="Tech Stack" />
+      <input className='filter_spe' type="text" name="role" value={filters.role} onChange={handleFilterChange} placeholder="Role" />
+      <select className='filter_spe' name="minBasePay" value={filters.minBasePay} onChange={handleFilterChange}>
         <option value="">Minimum Base Pay</option>
         {[10, 20, 30, 40, 50, 60, 70].map(amount => (
           <option key={amount} value={amount}>{amount}</option>
         ))}
       </select>
+      </div>
       <div className="job-listings">
         {filteredJobs.map(job => (
           <JobList key={job.jdUid} job={job} />

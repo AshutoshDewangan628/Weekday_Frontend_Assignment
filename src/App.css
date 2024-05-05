@@ -5,8 +5,9 @@
   }
   
   .job-card {
-    width: calc(32% - 20px); /* Adjust as needed */
-    margin-bottom: 20px;
+    width: 25%; 
+    height: 90%;
+    margin: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 20px;
@@ -14,26 +15,32 @@
     align-items: center; /* Align items vertically */
   }
   
+.job-card:hover {
+  cursor: pointer;
+  box-shadow: 0px 12px 30px 0px rgba(0, 0, 0, 0.2);
+  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+  
   @media (max-width: 768px) {
     .job-card {
-      width: calc(50% - 20px); /* Two cards per row on tablets */
+      width: 49% /* Two cards per row on tablets */
     }
   }
   
   @media (max-width: 576px) {
     .job-card {
-      width: calc(100% - 20px); /* One card per row on mobile */
+      width: 99% 
     }
   }
   
   .company-logo img {
-    max-width: 50px; /* Adjust as needed */
+    max-width: 50px; 
     height: auto;
-    margin-right: 20px; /* Add spacing between logo and details */
+    margin-right: 20px; 
   }
   
   .job-details {
-    flex-grow: 1; /* Take remaining space */
+    flex-grow: 1; 
     display: flex;
   }
   
@@ -50,7 +57,8 @@
   }
   
   .easy-apply-button {
-    background-color: #007bff;
+    background-color: #7fee88;
+    width: 100%;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -59,6 +67,13 @@
   }
   
   .easy-apply-button:hover {
-    background-color: #0056b3;
+    background-color: #08af05;
+  }
+  .filter{
+    justify-content: center;
+    align-items: center;
+  }
+  .filter_spe{
+    margin-right: 28px;
   }
   
